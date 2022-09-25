@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Be My Buddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" type="image/png" href="https://study-buddy.1mikixpl1.repl.co/favicon.png"/>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="container">
+        <h5 id="buddy">Twoim Buddy jest: USER.BUDDY.NAME</h5>
+    </header>
+    
+    <main class="container-fluid" id="form-control" style="overflow-y: scroll; max-height: 350px ">
+
+    </main>    
+
+    <footer class="container">
+    <form id="form">
+        <input type="text" class="form-control" id="input" aria-describedby="messageH" placeholder="Wyślij wiadomość swojemu Buddy'emu">
+        <button type="submit" class="btn btn-primary">Wylij</button>
+    </form>
+    </footer>
+
+<script>
+    const socket = io();
+
+    const username = document.cookie.split('=')[1];
+    socket.emit('new user', username);
+
+    const messageForm = document.getElementById('form');
+    const textInput = document.getElementById('input');
+
+    messageForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (textInput.value) {socket.emit('new message', textInput.value);
+            textInput.value = '';
+        }
+    });
+    socket.on('send buddy', (data) => {
+        const buddy = document.getElementById('buddy');
+        buddy.innerHTML = `Twoim Buddy jest: ${data.buddy}`;
+    })
+    socket.on('send message', (data) => {
+        const messageList = document.getElementById('form-control');
+        
+        const chatItem = document.createElement('div');
+        html = '<span>'
+        html += '<label>' + data.user + '</label>'
+        html += '<img src="slonik-logo.jpg" object-fit="cover" width="45px" height="45px" style="border-radius: 60%; white-space: normal; vertical-align: top; margin: 5px">'
+        html += '<a href="#" role="button" class="secondary" style="max-width: 70%" onclick="myFunction(this);">' + data.message +'</a>'
+        html += `<input type="text" value="${data.message}" aria-invalid="true"style="max-width: 70%; display: none">`
+        html += '</span>'
+        chatItem.innerHTML = html;
+        messageList.appendChild(chatItem);
+        
+    });
+    function myFunction(element) {
+        element.style.display = "none";
+        element.parentElement.children[3].style.display = "inline-block";
+    }
+</script>
+
+</body>
+
+</html>

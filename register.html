@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Be My Buddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" type="image/png" href="https://study-buddy.1mikixpl1.repl.co/favicon.png"/>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div class=container>
+    <br>
+    <h1>Ankieta wstępna</h1>
+    <p>To krótka ankieta, która pomoże nam dobrać idealnego Buddy dla Ciebie!</p>
+    <form action="/register" method="post">
+    <div>
+        <h6>Imie:</h6>
+        <input type="text" name="imie" id="username" placeholder="Wpisz swoje imie" required>
+    </div>
+    <div>
+        <h6>Wiek:</h6>
+          <input type="number" name="wiek" id="wiek" placeholder="Wpisz swój wiek" required>
+    </div>
+    <div>
+        <h6>Płeć:</h6>
+        <div class=grid>
+        <label>
+        <input type="radio" name="plec" id="kobieta" value="k" required>
+        <label for="kobieta">Kobieta</label>
+        </label>
+        <label>
+        <input type="radio" name="plec" id="mezczyzna" value="m">
+        <label for="mezczyzna">Mężczyzna</label>
+        </label>
+        </div>
+    </div>
+
+    <div>
+        <br>
+        <h6>Kraj:</h6>
+        <div class=grid>
+        <label>
+            <input type="radio" name="jezyk" id="jezyk" value="pl" required>
+            <img src="pl-flag.png" width="35px" height="35px">
+        </label>
+        <label>
+            <input type="radio" name="jezyk" id="jezyk" value="ua">
+            <img src="ua-flag.png" width="35px" height="35px">
+        </label>
+        </div>
+    </div>
+    <div>
+        <br>
+        <h6>Moje mocne strony:</h6>
+        <label style="color:lightgreen">
+        <input type="checkbox" name="umiem" id="polski" value="polski">
+        <label for="polski">📕 Polski</label>
+            </label>
+        <label style="color:lightgreen">
+        <input type="checkbox" name="umiem" id="matematyka" value="matematyka">
+        <label for="matematyka">📐 Matematyka</label>
+            </label>
+        <label style="color:lightgreen">
+        <input type="checkbox" name="umiem" id="biologia" value="biologia" disabled>
+        <label for="biologia">🧬 Biologia</label>
+            </label>
+        <label style="color:lightgreen">
+        <input type="checkbox" name="umiem" id="chemia" value="chemia" disabled>
+        <label for="chemia">🧪 Chemia</label>
+            </label>
+        <label style="color:lightgreen">
+        <input type="checkbox" name="umiem" id="rosyjski" value="rosyjski" disabled>
+        <label for="rosyjski">📘 Rosyjski</label>
+            </label>
+    </div>
+    <div>
+        <br>
+        <h6>Moje słabe strony:</h6>
+        <label style="color:red">
+        <input type="checkbox" name="potrzebuje" id="polski2" value="polski">
+        <label for="polski2">📕 Polski</label>
+        </label>
+        <label style="color:red">
+        <input type="checkbox" name="potrzebuje" id="matematyka2" value="matematyka">
+        <label for="matematyka2">📐 Matematyka</label>
+            </label>
+        <label style="color:red">
+        <input type="checkbox" name="potrzebuje" id="biologia2" value="biologia" disabled>
+        <label for="biologia2">🧬 Biologia</label>
+            </label>
+        <label style="color:red">
+        <input type="checkbox" name="potrzebuje" id="chemia2" value="chemia" disabled>
+        <label for="chemia2">🧪 Chemia</label>
+            </label>
+        <label style="color:red">
+        <input type="checkbox" name="potrzebuje" id="rosyjski2" value="rosyjski" disabled>
+        <label for="rosyjski2">📘 Rosyjski</label>
+            </label>
+    </div>
+    <div class="form-control">
+        <br>
+        <h6>Moje zainteresowania:</h6>
+        <label>
+        <input type="checkbox" name="zainteresowanie" id="koszykowka" value="koszykowka">
+        <label for="koszykowka">🏀 Koszykówka</label>
+        </label>
+        <label>
+        <input type="checkbox" name="zainteresowanie" id="pilkanozna" value="pilkanozna">
+        <label for="pilkanozna">⚽ Piłka nożna</label>
+        </label>
+        <label>
+        <input type="checkbox" name="zainteresowanie" id="pingpong" value="pingpong" disabled>
+        <label for="pingpong">🏓 Pingpong</label>
+        </label>
+        <label>
+        <input type="checkbox" name="zainteresowanie" id="rugby" value="rugby" disabled>
+        <label for="rugby">🏉 Rugby</label>
+        </label>
+        <label>
+        <input type="checkbox" name="zainteresowanie" id="ksiazki" value="ksiazki" disabled>
+        <label for="ksiazki">📚 Czytanie</label>
+        </label>
+    </div>
+    <div class="form-control">
+        <br>
+        <button type="submit" class="btn">Be My Buddy!</button>
+    </div>
+    </form> 
+</div>
+</body>
+</html>
